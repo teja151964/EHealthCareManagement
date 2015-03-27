@@ -21,7 +21,7 @@ function callJS(nameVar){
 	<f:view>
 		<h1>Find Doctor</h1>
 
-		<h:form>
+		<h:form id="searchParamForm">
 
 			<h:panelGrid columns="10">
 				<h:outputLabel value="First Name"></h:outputLabel>
@@ -36,7 +36,6 @@ function callJS(nameVar){
 				</h:selectOneMenu>
 				&nbsp;
 			<h:commandButton action="#{doctorBean.searchDoctor}" value="Search"></h:commandButton>
-				<h:messages layout="table"></h:messages>
 			</h:panelGrid>
 
 
@@ -44,27 +43,56 @@ function callJS(nameVar){
 		</h:form>
 		<br />
 		<br />
-		<h:dataTable id="doctTable" value="#{doctorBean.doctorSearchList}"
-			var="doct" rendered="#{doctorBean.showSearch}" border="1">
+		<h:form id="searchResultForm">
+			<h:dataTable id="doctTable" value="#{doctorBean.doctorSearchList}"
+				var="doct" rendered="#{doctorBean.showSearch}" border="1">
 
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Name" />
-				</f:facet>
-				<h:outputText value="#{doct.firstName}"></h:outputText>&nbsp;
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{doct.firstName}"></h:outputText>&nbsp;
 				<h:outputText value="#{doct.lastName}"></h:outputText>
 
-			</h:column>
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Specialization" />
-				</f:facet>
-				<h:outputText value="#{doct.specialization}"></h:outputText>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Specialization" />
+					</f:facet>
+					<h:outputText value="#{doct.specialization}"></h:outputText>
 
-			</h:column>
+				</h:column>
 
-		</h:dataTable>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Desination" />
+					</f:facet>
+					<h:outputText value="#{doct.designation}"></h:outputText>
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Visiting Days" />
+					</f:facet>
+					<h:outputText value="#{doct.visitingDays}"></h:outputText>
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+					</f:facet>
+					<h:commandLink value="Show details"
+						action="#{doctorBean.goToDetailProfile}">
+						<f:param name="doctorId" value="#{doct.doctorId}" />
+					</h:commandLink>
+				</h:column>
+
+
+			</h:dataTable>
+
+		</h:form>
 
 	</f:view>
 
