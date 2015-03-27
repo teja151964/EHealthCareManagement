@@ -3,6 +3,7 @@ package com.ehm.web.managebeans;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import com.ehm.db.impl.DoctorDao;
@@ -25,140 +26,171 @@ public class DoctorBean {
 
 	private List<Doctor> doctorSearchList;
 	private boolean showSearch;
+
 	/**
 	 * @return the firstName
 	 */
 	public String getFirstName() {
 		return firstName;
 	}
+
 	/**
-	 * @param firstName the firstName to set
+	 * @param firstName
+	 *            the firstName to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	/**
 	 * @return the lastName
 	 */
 	public String getLastName() {
 		return lastName;
 	}
+
 	/**
-	 * @param lastName the lastName to set
+	 * @param lastName
+	 *            the lastName to set
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	/**
 	 * @return the qualification
 	 */
 	public String getQualification() {
 		return qualification;
 	}
+
 	/**
-	 * @param qualification the qualification to set
+	 * @param qualification
+	 *            the qualification to set
 	 */
 	public void setQualification(String qualification) {
 		this.qualification = qualification;
 	}
+
 	/**
 	 * @return the registrationNum
 	 */
 	public String getRegistrationNum() {
 		return registrationNum;
 	}
+
 	/**
-	 * @param registrationNum the registrationNum to set
+	 * @param registrationNum
+	 *            the registrationNum to set
 	 */
 	public void setRegistrationNum(String registrationNum) {
 		this.registrationNum = registrationNum;
 	}
+
 	/**
 	 * @return the specialization
 	 */
 	public String getSpecialization() {
 		return specialization;
 	}
+
 	/**
-	 * @param specialization the specialization to set
+	 * @param specialization
+	 *            the specialization to set
 	 */
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
+
 	/**
 	 * @return the designation
 	 */
 	public String getDesignation() {
 		return designation;
 	}
+
 	/**
-	 * @param designation the designation to set
+	 * @param designation
+	 *            the designation to set
 	 */
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
+
 	/**
 	 * @return the visitingDays
 	 */
 	public String getVisitingDays() {
 		return visitingDays;
 	}
+
 	/**
-	 * @param visitingDays the visitingDays to set
+	 * @param visitingDays
+	 *            the visitingDays to set
 	 */
 	public void setVisitingDays(String visitingDays) {
 		this.visitingDays = visitingDays;
 	}
+
 	/**
 	 * @return the visitingHours
 	 */
 	public String getVisitingHours() {
 		return visitingHours;
 	}
+
 	/**
-	 * @param visitingHours the visitingHours to set
+	 * @param visitingHours
+	 *            the visitingHours to set
 	 */
 	public void setVisitingHours(String visitingHours) {
 		this.visitingHours = visitingHours;
 	}
+
 	/**
 	 * @return the emailId
 	 */
 	public String getEmailId() {
 		return emailId;
 	}
+
 	/**
-	 * @param emailId the emailId to set
+	 * @param emailId
+	 *            the emailId to set
 	 */
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
+
 	/**
 	 * @return the phoneNum
 	 */
 	public String getPhoneNum() {
 		return phoneNum;
 	}
+
 	/**
-	 * @param phoneNum the phoneNum to set
+	 * @param phoneNum
+	 *            the phoneNum to set
 	 */
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
+
 	/**
 	 * @return the doctorSearchList
 	 */
 	public List<Doctor> getDoctorSearchList() {
 		return doctorSearchList;
 	}
+
 	/**
-	 * @param doctorSearchList the doctorSearchList to set
+	 * @param doctorSearchList
+	 *            the doctorSearchList to set
 	 */
 	public void setDoctorSearchList(List<Doctor> doctorSearchList) {
 		this.doctorSearchList = doctorSearchList;
 	}
-
-
 
 	/**
 	 * @return the specializationList
@@ -175,21 +207,25 @@ public class DoctorBean {
 		}
 		return specializationList;
 	}
+
 	/**
-	 * @param specializationList the specializationList to set
+	 * @param specializationList
+	 *            the specializationList to set
 	 */
 	public void setSpecializationList(List<SelectItem> specializationList) {
 		this.specializationList = specializationList;
 	}
-	public String searchDoctor(){
+
+	public String searchDoctor() {
 
 		DoctorDao doctorDao = new DoctorDaoImpl();
 		try {
-			if("all".equals(specialization)){
+			if ("all".equals(specialization)) {
 				specialization = null;
 			}
-			doctorSearchList = doctorDao.getSearchDoctorRecords(specialization, firstName, lastName);
-			if(doctorSearchList != null && !doctorSearchList.isEmpty()){
+			doctorSearchList = doctorDao.getSearchDoctorRecords(specialization,
+					firstName, lastName);
+			if (doctorSearchList != null && !doctorSearchList.isEmpty()) {
 				showSearch = true;
 			}
 		} catch (SQLException e) {
@@ -200,14 +236,36 @@ public class DoctorBean {
 		return null;
 	}
 
+	public String goToDetailProfile() {
+
+		DoctorDao doctorDao = new DoctorDaoImpl();
+		try {
+			String selectedDoctorId = FacesContext.getCurrentInstance().getExternalContext()
+					.getRequestParameterMap().get("doctorId");
+			
+			if(selectedDoctorId != null && !selectedDoctorId.trim().isEmpty()){
+				int id = Integer.valueOf(selectedDoctorId);
+				System.out.println("selected doctor id:"+id);
+			}
+			
+
+		} catch (Exception ex) {
+
+		}
+
+		return null;
+	}
 
 	public static void main(String[] args) {
 		DoctorDao doctorDao = new DoctorDaoImpl();
 		try {
-			List<Doctor> doctorList = doctorDao.getSearchDoctorRecords(null, "S", null);
+			List<Doctor> doctorList = doctorDao.getSearchDoctorRecords(null,
+					"S", null);
 
 			for (Doctor doctor : doctorList) {
-				System.out.println("**"+doctor.getFirstName()+","+doctor.getLastName()+","+doctor.getSpecialization() );
+				System.out.println("**" + doctor.getFirstName() + ","
+						+ doctor.getLastName() + ","
+						+ doctor.getSpecialization());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -218,15 +276,16 @@ public class DoctorBean {
 		}
 	}
 
-	
 	/**
 	 * @return the showSearch
 	 */
 	public boolean isShowSearch() {
 		return showSearch;
 	}
+
 	/**
-	 * @param showSearch the showSearch to set
+	 * @param showSearch
+	 *            the showSearch to set
 	 */
 	public void setShowSearch(boolean showSearch) {
 		this.showSearch = showSearch;
