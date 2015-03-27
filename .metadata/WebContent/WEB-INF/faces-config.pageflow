@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14272944212310" configfile="/EHealthcareManagement/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="754" id="pf14274050863280" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14274050863281 pf14274050863282 pf14274050863283 pf14274051379469 pf14274291678570 pf14274291678581" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsp/homePage" x="338" y="178" id="pf14274050863285" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14274050863281" path="/jsp/homePage.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsp/searchForDoctor" x="338" y="562" id="pf14274050863286" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14274050863282" path="/jsp/searchForDoctor.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsp/createNewAccount" x="338" y="946" id="pf14274050863287" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf14274050863283" path="/jsp/createNewAccount.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsp/Login" id="pf142740513794612" referenceLink="//@navigationRule.3/@navigationCase.2/@toViewId|" inlinks="pf14274051379469 pf14274291678581" path="/jsp/Login.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsp/loginHome" id="pf14274291678582" referenceLink="//@navigationRule.3/@navigationCase.1/@toViewId|" inlinks="pf14274291678570" path="/jsp/loginHome.jsp"/>
+  <links id="pf14274050863281" target="pf14274050863285" source="pf14274050863280" outcome="navigateToHomePage"/>
+  <links id="pf14274050863282" target="pf14274050863286" source="pf14274050863280" outcome="navigateToSearchDoctor"/>
+  <links id="pf14274050863283" target="pf14274050863287" source="pf14274050863280" outcome="navigateCreateAccountPage"/>
+  <links id="pf14274051379469" target="pf142740513794612" source="pf14274050863280" outcome="navigateToLogin"/>
+  <links id="pf14274291678570" target="pf14274291678582" source="pf14274050863280" outcome="success"/>
+  <links id="pf14274291678581" target="pf142740513794612" source="pf14274050863280" outcome="failure"/>
+</pageflow:Pageflow>
