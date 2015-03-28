@@ -2,6 +2,7 @@ package com.ehm.db.model;
 
 public class Doctor {
 
+	private int doctorId;
 	private String firstName;
 	private String lastName;
 	private String qualification;
@@ -12,6 +13,22 @@ public class Doctor {
 	private String visitingHours;
 	private String emailId;
 	private String phoneNum;
+
+	
+	
+	/**
+	 * @return the doctorId
+	 */
+	public int getDoctorId() {
+		return doctorId;
+	}
+
+	/**
+	 * @param doctorId the doctorId to set
+	 */
+	public void setDoctorId(int doctorId) {
+		this.doctorId = doctorId;
+	}
 
 	/**
 	 * @return the firstName
